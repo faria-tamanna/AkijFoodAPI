@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AkijFood.Models;
-using DrinksCollection.Data.Models;
-using DrinksCollection.Data.Interfaces;
-using DrinksCollection.Data.Repositories;
+using AkijFood.Repositories;
 
 namespace AkijFood.Controllers
 {
@@ -15,35 +13,50 @@ namespace AkijFood.Controllers
     [ApiController]
     public class ColdDrinksController : ControllerBase
     {
-        /*public List<ColdDrinks> drinks = new List<ColdDrinks>()
+        private readonly IDrinksRepository _drinksRepository;
+        public ColdDrinksController(IDrinksRepository drinksRepository)
         {
-            new ColdDrinks {Id = 1, Name = "Clemon", Quantity = 450, Price = 20},
-            new ColdDrinks {Id = 2, Name = "Frutika", Quantity = 500, Price = 25},
-            new ColdDrinks {Id = 3, Name = "Speed", Quantity = 600, Price = 30}
-        };*/
-
-        private IDrinksRepository drinks = new DrinksRepository();
+            _drinksRepository = drinksRepository;
+        }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ColdDrinks>> GetAllDrinks()
+        public async Task<IEnumerable<ColdDrinks>> GetDrinks()
         {
-            return drinks.GetAllDrinks();
+            return await _drinksRepository.Get();
         }
-
 
         [HttpGet("{id}")]
-        public ActionResult<ColdDrinks> GetDrinks(int id)
+        public async Task<ActionResult<ColdDrinks>> GetDrinks(int id)
         {
-            //var drink = drinks.FirstOrDefault(x => x.Id == id);
-            var drink = drinks.GetDrinks(id);
-                
-            if(drink == null)
-            {
-                return NotFound();
-            }
-            return drink;
+            return await _drinksRepository.Get(id);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<ColdDrinks>> PostDrinks([FromBody] ColdDrinks drinks)
+        {
+            var newdrinks = await _drinksRepository.Create(drinks);
+            return CreatedAtAction(nameof(GetDrinks), new { id = newdrinks.Id }, newdrinks);
+        }
 
+        [HttpPut]
+        public async Task<ActionResult> PutDrinks(int id, [FromBody] ColdDrinks drinks)
+        {
+            if(id != drinks.Id)
+            {
+                return BadRequest();
+            }
+            await _drinksRepository.Update(drinks);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteDrinks(int id)
+        {
+            var drinksToDelete = await _drinksRepository.Get(id);
+            if (drinksToDelete == null)
+                return NotFound();
+            await _drinksRepository.Delete(drinksToDelete.Id);
+            return NoContent();
+        }
     }
 }

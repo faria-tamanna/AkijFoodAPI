@@ -11,5 +11,6 @@ namespace DrinksCollection.Data.Interfaces
     {
         List<ColdDrinks> GetAllDrinks();
         ColdDrinks GetDrinks(int id);
+        
     }
 }

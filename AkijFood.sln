@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AkijFood", "AkijFood\AkijFood.csproj", "{7C615A49-6647-4730-8E2E-FEE4B25F1F97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinksCollection.Data", "DrinksCollection.Data\DrinksCollection.Data.csproj", "{DE5CBB10-D2B7-483A-B9BB-C0018036FF91}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{7C615A49-6647-4730-8E2E-FEE4B25F1F97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C615A49-6647-4730-8E2E-FEE4B25F1F97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C615A49-6647-4730-8E2E-FEE4B25F1F97}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE5CBB10-D2B7-483A-B9BB-C0018036FF91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE5CBB10-D2B7-483A-B9BB-C0018036FF91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE5CBB10-D2B7-483A-B9BB-C0018036FF91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE5CBB10-D2B7-483A-B9BB-C0018036FF91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

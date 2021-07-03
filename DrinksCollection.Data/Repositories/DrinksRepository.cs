@@ -26,5 +26,7 @@ namespace DrinksCollection.Data.Repositories
         {
             return drinks.FirstOrDefault(x => x.Id == id);
         }
+
+        
     }
 }
